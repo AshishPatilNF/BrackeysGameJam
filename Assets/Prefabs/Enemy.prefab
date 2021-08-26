@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bd70dd594e944bbdd22cfcb178ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRanged: 0
+  isRanged: 1
   health: 100
   maxHealth: 100
   healthRegenPerSecond: 0.25

@@ -65,4 +65,13 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
+
+    public void ReduceHealth(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
