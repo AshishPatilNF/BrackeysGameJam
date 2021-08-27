@@ -112,7 +112,7 @@ public class EnemyGenericAI : MonoBehaviour
                     FleeFromPlayer();
             }
             
-            if (distanceFromPlayer >= fleeDistance)
+            if (distanceFromPlayer > fleeDistance)
                 enemyPatrolling.StartPatrolling();
         }
     }

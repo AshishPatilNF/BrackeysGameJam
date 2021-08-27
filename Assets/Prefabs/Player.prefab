@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage_P: 1
   attackRange_P: 5
-  attackCoolDown: 0
+  attackCoolDown: 0.5
 --- !u!1 &3805979548822135998
 GameObject:
   m_ObjectHideFlags: 0
