@@ -9,6 +9,13 @@ public class PlayerAttack : MonoBehaviour
 
     private float attackTimer;
 
+    DamageDealer damage;
+
+    private void Start()
+    {
+        damage = GetComponent<DamageDealer>();
+    }
+
     void Update()
     {
         attackTimer += Time.deltaTime;
@@ -27,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
             if(hit.collider.tag == "Enemy")
             {
                 EnemyGenericAI eHealth = hit.collider.GetComponent<EnemyGenericAI>();
-                eHealth.TakeDamage(myWeapon.attackDamage_P);
+                eHealth.TakeDamage(damage.GetDamage());
             }
         }
     }

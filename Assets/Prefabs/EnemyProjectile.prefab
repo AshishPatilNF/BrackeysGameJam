@@ -14,7 +14,11 @@ GameObject:
   - component: {fileID: 8585984108957727052}
   - component: {fileID: 2652192811932319428}
   - component: {fileID: -751553178785438694}
+<<<<<<< HEAD
   - component: {fileID: 6062193974126348925}
+=======
+  - component: {fileID: -6823452353114294521}
+>>>>>>> 4f00dcead56b2b995f20b71b3086b27e94f08b45
   m_Layer: 0
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -93,7 +97,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8585984108957727053}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -128,7 +132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+<<<<<<< HEAD
 --- !u!114 &6062193974126348925
+=======
+--- !u!114 &-6823452353114294521
+>>>>>>> 4f00dcead56b2b995f20b71b3086b27e94f08b45
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

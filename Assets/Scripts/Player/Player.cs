@@ -20,8 +20,13 @@ public class Player : MonoBehaviour
 
     //References//
     //[SerializeField] private Ui_Inventory ui_Inventory;
-    public CharacterController characterController;
+    CharacterController characterController;
     //private Inventory inventory;
+
+    private void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
 
     private void Awake()
     {
@@ -61,20 +66,12 @@ public class Player : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public void ReduceHealth(float amount)
     {
-        if (hit.gameObject.GetComponent<Damage>())
+        health -= amount;
+        if (health <= 0)
         {
-            health -= hit.gameObject.GetComponent<Damage>().GetDamage();
-
-            if (health <= 0)
-            {
-                health = 0;
-                Destroy(this.gameObject);
-            }
+            Destroy(gameObject);
         }
-
-        if (hit.gameObject.GetComponent<EnemyProjectile>())
-            Destroy(hit.gameObject);
     }
 }

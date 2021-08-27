@@ -71,29 +71,42 @@ public class EnemyGenericAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (player && health > fleeHealth)
+        if (player)
         {
-            PlayerDetectionAndAttack();
-        }
+            distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (health <= fleeHealth && distanceFromPlayer < fleeDistance)
-        {
-            FleeFromPlayer();
-        }
-
-        if (!underAttack && health < maxHealth && Time.time > nextHealthRegen)
-        {
-            nextHealthRegen = Time.time + healthRegenDelay;
-            health += healthRegenPerSecond;
-        }
-
-        if (underAttack)
-        {
-            if (underAttackRoutine == null)
+            if (Mathf.Abs(player.transform.position.y - transform.position.y) < 0.5f)
             {
-                underAttackRoutine = StartCoroutine(AfterUnderAttackRoutine());
+                if (health > fleeHealth)
+                {
+                    PlayerDetectionAndAttack();
+                }
+
+                if (health <= fleeHealth && distanceFromPlayer < fleeDistance)
+                {
+                    FleeFromPlayer();
+                }
+
+                if (!underAttack && health < maxHealth && Time.time > nextHealthRegen)
+                {
+                    nextHealthRegen = Time.time + healthRegenDelay;
+                    health += healthRegenPerSecond;
+                }
+
+                if (underAttack)
+                {
+                    if (underAttackRoutine == null)
+                    {
+                        underAttackRoutine = StartCoroutine(AfterUnderAttackRoutine());
+                    }
+                }
+            }
+            else if (Mathf.Abs(player.transform.position.y - transform.position.y) > 1f)
+            {
+                Debug.Log(distanceFromPlayer);
+
+                if (distanceFromPlayer < fleeDistance)
+                    FleeFromPlayer();
             }
         }
     }
@@ -102,6 +115,7 @@ public class EnemyGenericAI : MonoBehaviour
     {
         Vector3 relativePos = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos * -1, Vector3.up);
+        rotation.x = 0;
         transform.rotation = rotation;
         transform.position += Vector3.forward * Time.deltaTime * speed;
     }
@@ -110,7 +124,8 @@ public class EnemyGenericAI : MonoBehaviour
     {
         Vector3 relativePos = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        
+        rotation.x = 0;
+
         if (distanceFromPlayer < detectionDistance)
         {
             transform.rotation = rotation;
@@ -148,7 +163,6 @@ public class EnemyGenericAI : MonoBehaviour
     }
     private void IamUnderAttack()
     {
-        // call whem enemy under attack
         underAttack = true;
     }
 
