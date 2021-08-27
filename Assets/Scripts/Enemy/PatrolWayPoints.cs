@@ -15,8 +15,8 @@ public class PatrolWayPoints : MonoBehaviour
     {
         if (wayPoint.Count > 0)
         {
-            Transform temp = wayPoint[0];
-            wayPoint.RemoveAt(0);
+            Transform temp = wayPoint[Random.Range(0, wayPoint.Count)];
+            wayPoint.Remove(temp);
             return temp;
         }
         else
