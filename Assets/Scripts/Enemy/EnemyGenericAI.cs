@@ -85,7 +85,7 @@ public class EnemyGenericAI : MonoBehaviour
                     PlayerDetectionAndAttack();
                 }
 
-                if (health <= fleeHealth && distanceFromPlayer < fleeDistance)
+                if (health <= fleeHealth && distanceFromPlayer <= fleeDistance)
                 {
                     FleeFromPlayer();
                 }
@@ -108,12 +108,12 @@ public class EnemyGenericAI : MonoBehaviour
             {
                 Debug.Log(distanceFromPlayer);
 
-                if (distanceFromPlayer < fleeDistance)
+                if (distanceFromPlayer <= fleeDistance)
                     FleeFromPlayer();
             }
-            
-            if (distanceFromPlayer > fleeDistance)
-                enemyPatrolling.StartPatrolling();
+
+            /*if (distanceFromPlayer >= fleeDistance)
+                enemyPatrolling.StartPatrolling();*/
         }
     }
 

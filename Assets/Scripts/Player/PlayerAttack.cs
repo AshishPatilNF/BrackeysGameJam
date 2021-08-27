@@ -36,6 +36,10 @@ public class PlayerAttack : MonoBehaviour
                 EnemyGenericAI eHealth = hit.collider.GetComponent<EnemyGenericAI>();
                 eHealth.TakeDamage(damage.GetDamage());
             }
+            else if (hit.collider.tag == "EnemyProjectile")
+            {
+                Destroy(hit.collider.gameObject);
+            }
         }
     }
 }
