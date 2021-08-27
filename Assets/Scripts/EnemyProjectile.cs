@@ -7,6 +7,9 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField]
     float speed = 5f;
 
+    [SerializeField]
+    float destroyAfter = 7f;
+
     Vector3 moveDirection;
 
     Player player;
@@ -22,6 +25,11 @@ public class EnemyProjectile : MonoBehaviour
         player = FindObjectOfType<Player>();
         moveDirection = (player.transform.position - transform.position).normalized * speed;
         rigidBody.velocity = moveDirection;
+    }
+
+    private void Update()
+    {
+        Destroy(this.gameObject, destroyAfter);
     }
 
     private void OnCollisionEnter(Collision collision)

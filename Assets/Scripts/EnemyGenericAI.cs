@@ -56,12 +56,15 @@ public class EnemyGenericAI : MonoBehaviour
 
     Player player;
 
+    EnemyPatrolling enemyPatrolling;
+
     Coroutine underAttackRoutine = null;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
+        enemyPatrolling = GetComponent<EnemyPatrolling>();
         fleeHealth = maxHealth * 0.25f;
 
         if (isRanged)
@@ -108,6 +111,9 @@ public class EnemyGenericAI : MonoBehaviour
                 if (distanceFromPlayer < fleeDistance)
                     FleeFromPlayer();
             }
+            
+            if (distanceFromPlayer >= fleeDistance)
+                enemyPatrolling.StartPatrolling();
         }
     }
 
@@ -128,6 +134,7 @@ public class EnemyGenericAI : MonoBehaviour
 
         if (distanceFromPlayer < detectionDistance)
         {
+            enemyPatrolling.StopPatrolling();
             transform.rotation = rotation;
             
             if (distanceFromPlayer > attackRange)
@@ -146,6 +153,10 @@ public class EnemyGenericAI : MonoBehaviour
                     nextAttack = Time.time + attackDelay;
                 }
             }
+        }
+        else
+        {
+            enemyPatrolling.StartPatrolling();
         }
     }
 
