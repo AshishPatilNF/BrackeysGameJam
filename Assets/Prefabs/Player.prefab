@@ -286,7 +286,7 @@ MonoBehaviour:
   gravity: -80
   groundDist: 0.4
   mouseSensitivity: 200
-  health: 100
+  health_P: 100
   playerBody: {fileID: 3805979550574100083}
   groundCheck: {fileID: 3805979548822135999}
   groundMask:
