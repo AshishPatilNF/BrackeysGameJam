@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 2793625100407953157, guid: a10595ce879f16a4092394d18ecb133a, type: 3}
   arrowSpawn: {fileID: 2125132309}
-  shootForce: 20
+  shootForce: 30
 --- !u!65 &965509088
 BoxCollider:
   m_ObjectHideFlags: 0
