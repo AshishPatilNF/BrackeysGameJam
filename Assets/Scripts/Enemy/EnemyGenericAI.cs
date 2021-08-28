@@ -36,6 +36,9 @@ public class EnemyGenericAI : MonoBehaviour
 
     [SerializeField]
     float attackDelay = 0.5f;
+    
+    [SerializeField]
+    float turnSpeed = 1.5f;
 
     [SerializeField]
     GameObject enemyProjectile;
@@ -135,8 +138,9 @@ public class EnemyGenericAI : MonoBehaviour
         if (distanceFromPlayer < detectionDistance)
         {
             enemyPatrolling.StopPatrolling();
-            transform.rotation = rotation;
-            
+            //transform.rotation = rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+
             if (distanceFromPlayer > attackRange)
             {
                 float step = speed * Time.deltaTime;
