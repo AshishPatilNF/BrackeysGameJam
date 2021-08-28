@@ -23,12 +23,14 @@ public class Player : MonoBehaviour
     //[SerializeField] private Ui_Inventory ui_Inventory;
     CharacterController characterController;
     Animator playerAnimator;
+    Shoot shoot;
     //private Inventory inventory;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         playerAnimator = GetComponent<Animator>();
+        shoot = FindObjectOfType<Shoot>();
     }
 
     private void Awake()
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     {   
         RotateMove();
         Run();
+        Attack();
     }
 
 
@@ -48,6 +51,14 @@ public class Player : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         playerBody.Rotate(Vector3.up * mouseX);
+    }
+    private void Attack()
+    {
+        //bool isHoldingBow;
+        if(Input.GetMouseButtonDown(1))
+        {
+            shoot.StartShooting();
+        }
     }
     private void Run()
     {
