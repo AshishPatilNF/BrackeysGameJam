@@ -16,16 +16,19 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
+    Vector3 move;
     bool isGrounded;
 
     //References//
     //[SerializeField] private Ui_Inventory ui_Inventory;
     CharacterController characterController;
+    Animator playerAnimator;
     //private Inventory inventory;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Awake()
@@ -58,10 +61,10 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        move = transform.right * x + transform.forward * z;
 
         characterController.Move(Vector3.ClampMagnitude(move, 1.0f) * runSpeed * Time.deltaTime);
-
+        LetsRun();
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
@@ -72,6 +75,21 @@ public class Player : MonoBehaviour
         if (health_P <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void LetsRun()
+    {
+        bool isRunningX = Mathf.Abs(move.x) > Mathf.Epsilon;
+        bool isRunningZ = Mathf.Abs(move.z) > Mathf.Epsilon;
+
+        if (isRunningX || isRunningZ)
+        {
+            playerAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
         }
     }
 }
