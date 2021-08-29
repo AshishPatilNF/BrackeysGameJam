@@ -1,23 +1,50 @@
 fileFormatVersion: 2
-guid: febb81421e54289438fd2f3f95a30159
+guid: 07d9ab642bb2dab4f95e41d61bad0bb5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 7560092227163854830
-    second: Armature|Cyclop_Attack
+      74: 3687003034884733861
+    second: Armature|Bow_Hold
   - first:
-      74: -1281256753834390528
-    second: Armature|Cyclop_Idle
+      74: -5413275908327303025
+    second: Armature|Bow_Loaded_Backward_Walk
   - first:
-      74: -5314865383227912880
-    second: Armature|Cyclop_Patrol
+      74: -6692688645797393538
+    second: Armature|Bow_Loaded_Forward_Walk
   - first:
-      74: 2437564887549360710
-    second: Armature|Cyclop_Run
+      74: 8550591071037322578
+    second: Armature|Bow_Loaded_Left_Walk
   - first:
-      74: -4500109478609694321
-    second: Armature|Cyclop_T-Pose
+      74: 8742401261911059237
+    second: Armature|Bow_Loaded_Right_Walk
+  - first:
+      74: 8866049039885786699
+    second: Armature|Forward_Run
+  - first:
+      74: 3357759559673514527
+    second: Armature|Forward_Walk
+  - first:
+      74: -9019319416649092084
+    second: Armature|Hands
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: -5986998236642634277
+    second: Armature|Sword_Attack_1
+  - first:
+      74: 7164593233433019503
+    second: Armature|Sword_Attack_1_No_Legs
+  - first:
+      74: -7782947804881180590
+    second: Armature|Sword_Attack_2
+  - first:
+      74: 1150933450688468910
+    second: Armature|Sword_Attack_2_No_Legs
+  - first:
+      74: -8120734748751425438
+    second: Armature|Sword_Hold
   externalObjects: {}
   materials:
     materialImportMode: 2
