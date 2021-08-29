@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyGenericAI : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class EnemyGenericAI : MonoBehaviour
 
     [SerializeField]
     float attackDelay = 0.5f;
+    
+    [SerializeField]
+    float turnSpeed = 1.5f;
 
     [SerializeField]
     GameObject enemyProjectile;
@@ -58,12 +62,15 @@ public class EnemyGenericAI : MonoBehaviour
 
     EnemyPatrolling enemyPatrolling;
 
+    NavMeshAgent navMeshAgent;
+
     Coroutine underAttackRoutine = null;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         enemyPatrolling = GetComponent<EnemyPatrolling>();
         fleeHealth = maxHealth * 0.25f;
 
@@ -135,15 +142,19 @@ public class EnemyGenericAI : MonoBehaviour
         if (distanceFromPlayer < detectionDistance)
         {
             enemyPatrolling.StopPatrolling();
-            transform.rotation = rotation;
-            
+            //transform.rotation = rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+
             if (distanceFromPlayer > attackRange)
             {
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+                /*float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);*/
+                navMeshAgent.destination = player.transform.position;
             }
             else
             {
+                navMeshAgent.ResetPath();
+
                 if (Time.time > nextAttack)
                 {
                     if (isRanged)

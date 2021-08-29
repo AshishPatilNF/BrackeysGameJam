@@ -118,4 +118,10 @@ public class Player : MonoBehaviour
         //     playerAnimator.SetBool("isRunning", false);
         // }
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.transform.GetComponent<DamageDealer>())
+            ReduceHealth(hit.collider.transform.GetComponent<DamageDealer>().GetDamage());
+    }
 }
