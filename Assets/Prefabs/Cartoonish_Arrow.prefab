@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2793625100407953158}
   - component: {fileID: -2360529013829614223}
   - component: {fileID: 3200059087763901194}
+  - component: {fileID: 7519629627729149604}
   m_Layer: 0
   m_Name: Cartoonish_Arrow
   m_TagString: Untagged
@@ -127,3 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195a0ba281b34224f9053587b391ba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7519629627729149604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793625100407953157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81cf8ac26f41d148a77ce001769e743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

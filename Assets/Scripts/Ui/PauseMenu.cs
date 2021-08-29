@@ -45,7 +45,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void MainMenu()
     {
-        //Go to MainMenu but we dont have one still
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

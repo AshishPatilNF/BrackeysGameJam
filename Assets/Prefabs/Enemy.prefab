@@ -483,6 +483,7 @@ MonoBehaviour:
   fleeDistance: 30
   attackRange: 2
   attackDelay: 0.5
+  turnSpeed: 1.5
   enemyProjectile: {fileID: 3492801043955834719, guid: 4045a44585256084b9559c81a56af699, type: 3}
   projectilePoint: {fileID: 8559826065594415230}
   underAttack: 0
@@ -499,7 +500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPatrolling: 1
-  moveToPosition: {fileID: 0}
 --- !u!1 &8559826065594415230
 GameObject:
   m_ObjectHideFlags: 0

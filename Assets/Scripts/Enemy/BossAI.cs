@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour
 {
@@ -12,9 +13,6 @@ public class BossAI : MonoBehaviour
 
     [SerializeField]
     float healthRegenDelay = 0.5f;
-
-    [SerializeField]
-    float speed = 2.5f;
 
     [SerializeField]
     float detectionDistance = 30f;
@@ -36,10 +34,16 @@ public class BossAI : MonoBehaviour
 
     Player player;
 
+    NavMeshAgent navMeshAgent;
+
+    Animator bossAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
+        bossAnimator = FindObjectOfType<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -70,16 +74,36 @@ public class BossAI : MonoBehaviour
 
             if (distanceFromPlayer > attackRange)
             {
-                float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+                bossAnimator.SetBool("isRunning", true);
+                navMeshAgent.destination = player.transform.position;
             }
             else
             {
+                navMeshAgent.ResetPath();
+                bossAnimator.SetBool("isRunning", false);
+
                 if (Time.time > nextAttack)
                 {
-                    nextAttack = Time.time + attackDelay;
+                    int randomAttackID = Random.Range(1, 4);
+                    nextAttack = Time.time + randomAttackID + 2.5f;
+                    bossAnimator.SetTrigger("Attack" + randomAttackID);
                 }
             }
+        }
+        else
+        {
+            navMeshAgent.ResetPath();
+            bossAnimator.SetBool("isRunning", false);
+        }
+    }
+
+    public void HitDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            bossAnimator.SetBool("isDead", true);
+            Destroy(gameObject, 5f);
         }
     }
 }

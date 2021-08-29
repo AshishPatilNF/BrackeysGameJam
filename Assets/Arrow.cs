@@ -8,7 +8,9 @@ public class Arrow : MonoBehaviour
     private float lifeTimer = 2f; 
     private float timer;
     private bool hitSomething = false;
+    //public float damage;
     DamageDealer damage;
+    BoxCollider boxCollider;
 
 
 
@@ -16,7 +18,9 @@ public class Arrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider>();
         mybody = GetComponent<Rigidbody>();
+        damage = GetComponent<DamageDealer>();
         transform.rotation = Quaternion.LookRotation(mybody.velocity);
     }
 
@@ -43,7 +47,19 @@ public class Arrow : MonoBehaviour
         if (collision.transform.GetComponent<Player>())
         {
             Destroy(gameObject);
-            collision.transform.GetComponent<Player>().ReduceHealth(10);
+            collision.transform.GetComponent<Player>().ReduceHealth(damage.GetDamage());
+        }
+
+        if(collision.transform.GetComponent<EnemyGenericAI>())
+        {
+            Destroy(gameObject);
+            collision.transform.GetComponent<EnemyGenericAI>().TakeDamage(damage.GetDamage());
+        }
+
+        if (collision.transform.GetComponent<BossAI>())
+        {
+            Destroy(gameObject);
+            collision.transform.GetComponent<BossAI>().HitDamage(damage.GetDamage());
         }
     }
 
