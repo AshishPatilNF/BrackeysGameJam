@@ -63,6 +63,8 @@ public class EnemyGenericAI : MonoBehaviour
     EnemyPatrolling enemyPatrolling;
 
     NavMeshAgent navMeshAgent;
+    
+    Animator enemyAnimator;
 
     Coroutine underAttackRoutine = null;
 
@@ -72,6 +74,7 @@ public class EnemyGenericAI : MonoBehaviour
         player = FindObjectOfType<Player>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyPatrolling = GetComponent<EnemyPatrolling>();
+        enemyAnimator = GetComponent<Animator>();
         fleeHealth = maxHealth * 0.25f;
 
         if (isRanged)
@@ -89,12 +92,17 @@ public class EnemyGenericAI : MonoBehaviour
             {
                 if (health > fleeHealth)
                 {
-                    PlayerDetectionAndAttack();
+                    DetectionAndAttack();
                 }
 
                 if (health <= fleeHealth && distanceFromPlayer <= fleeDistance)
                 {
+                    enemyAnimator.SetBool("isChasingFleeing", true);
                     FleeFromPlayer();
+                }
+                else
+                {
+                    enemyAnimator.SetBool("isChasingFleeing", false);
                 }
 
                 if (!underAttack && health < maxHealth && Time.time > nextHealthRegen)
@@ -116,7 +124,14 @@ public class EnemyGenericAI : MonoBehaviour
                 Debug.Log(distanceFromPlayer);
 
                 if (distanceFromPlayer <= fleeDistance)
+                {
+                    enemyAnimator.SetBool("isChasingFleeing", true);
                     FleeFromPlayer();
+                }
+                else
+                {
+                    enemyAnimator.SetBool("isChasingFleeing", false);
+                }
             }
 
             /*if (distanceFromPlayer >= fleeDistance)
@@ -133,7 +148,7 @@ public class EnemyGenericAI : MonoBehaviour
         transform.position += Vector3.forward * Time.deltaTime * speed;
     }
 
-    private void PlayerDetectionAndAttack()
+    private void DetectionAndAttack()
     {
         Vector3 relativePos = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
@@ -141,6 +156,8 @@ public class EnemyGenericAI : MonoBehaviour
 
         if (distanceFromPlayer < detectionDistance)
         {
+            enemyAnimator.SetBool("isPatrolling", false);
+            enemyAnimator.SetBool("isChasingFleeing", true);
             enemyPatrolling.StopPatrolling();
             //transform.rotation = rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
@@ -160,13 +177,17 @@ public class EnemyGenericAI : MonoBehaviour
                     if (isRanged)
                         Instantiate(enemyProjectile, projectilePoint.transform.position, Quaternion.identity);
                     else
-                        Debug.Log("Enemy Melee Attacking");
+                    {
+
+                    }
                     nextAttack = Time.time + attackDelay;
                 }
             }
         }
         else
         {
+            enemyAnimator.SetBool("isChasingFleeing", false);
+            enemyAnimator.SetBool("isPatrolling", true);
             enemyPatrolling.StartPatrolling();
         }
     }

@@ -147,7 +147,7 @@ MonoBehaviour:
   healthRegenPerSecond: 0.25
   healthRegenDelay: 0.5
   detectionDistance: 30
-  attackRange: 2.5
+  attackRange: 3
   attackDelay: 2.5
   turnSpeed: 1.5
 --- !u!54 &1345666257
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1560695768133701713}
-  attackRange: 4
+  attackRange: 6
 --- !u!1 &5482686562027499998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 5368458660517662861}
-  attackRange: 4
+  attackRange: 6
 --- !u!1 &5482686562027500000
 GameObject:
   m_ObjectHideFlags: 0
