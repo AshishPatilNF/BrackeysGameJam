@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1581837634
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1581837635}
-  m_Layer: 0
-  m_Name: Arrow Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1581837635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581837634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.55, y: 0.34, z: 0.47}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7362903940431983971}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &375070150700983
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,7 +5339,6 @@ Transform:
   - {fileID: 3250124333326808219}
   - {fileID: 5354726708071393674}
   - {fileID: 52157047686067059}
-  - {fileID: 1581837635}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5403,16 +5372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdd2829b295e114794099ea71901ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 12
-  gravity: -80
-  groundDist: 0.4
-  mouseSensitivity: 200
   health_P: 100
-  playerBody: {fileID: 7362903940431983971}
-  groundCheck: {fileID: 52157047686067059}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
+  playerSpeed: 10
+  gravityValue: -9.81
+  turnSpeed: 5
 --- !u!114 &245741699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5458,7 +5421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 2793625100407953157, guid: a10595ce879f16a4092394d18ecb133a, type: 3}
-  arrowSpawn: {fileID: 1581837635}
+  arrowSpawn: {fileID: 0}
   shootForce: 20
 --- !u!1 &7885530561890638795
 GameObject:
