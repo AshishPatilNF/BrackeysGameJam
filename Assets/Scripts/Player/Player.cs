@@ -64,17 +64,9 @@ public class Player : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
         //////////////////
 
-        Attack();
+        
     }
 
-    private void Attack()
-    {
-        //bool isHoldingBow;
-        if(Input.GetMouseButtonDown(1))
-        {
-            shoot.StartShooting();
-        }
-    }
     private void Run()
     {
         // isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
