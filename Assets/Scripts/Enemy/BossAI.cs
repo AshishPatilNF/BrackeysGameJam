@@ -21,7 +21,7 @@ public class BossAI : MonoBehaviour
     float attackRange = 2f;
 
     [SerializeField]
-    float attackDelay = 0.5f;
+    float attackDelay = 2.5f;
 
     [SerializeField]
     float turnSpeed = 1.5f;
@@ -84,8 +84,8 @@ public class BossAI : MonoBehaviour
 
                 if (Time.time > nextAttack)
                 {
-                    int randomAttackID = Random.Range(1, 4);
-                    nextAttack = Time.time + randomAttackID + 2.5f;
+                    float randomAttackID = Random.Range(1, 4);
+                    nextAttack = Time.time + attackDelay + randomAttackID;
                     bossAnimator.SetTrigger("Attack" + randomAttackID);
                 }
             }
